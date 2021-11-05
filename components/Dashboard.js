@@ -7,11 +7,11 @@ import { Grid } from '@mui/material'
 const Dashboard = () => {
   return (
     <Grid container spacing={4}>
-      <Grid item xs={12} md={5}>
-        <Stocks />
-      </Grid>
-      <Grid item xs={12} md={7}>
+      <Grid item xs={12}>
         <Storages />
+      </Grid>
+      <Grid item xs={12}>
+        <Stocks />
       </Grid>
     </Grid>
   )

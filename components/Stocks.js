@@ -32,7 +32,7 @@ const Stocks = () => {
   }
 
   return (
-    <Box sx={{ height: 400, mt: 4 }}>
+    <Box sx={{ height: 400, mt: 4, width: '40%' }}>
       <Box sx={{ display: 'flex' }}>
         <Typography
           sx={{ flexGrow: 1 }}
