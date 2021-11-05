@@ -13,6 +13,8 @@ const columns = [
   { field: 'cocina', headerName: 'Cocina', width: 100 },
   { field: 'pulmon', headerName: 'Pulmon', width: 100 },
   { field: 'despacho', headerName: 'Despacho', width: 100 },
+  { field: 'totalSpace', headerName: 'Espacio total', width: 100 },
+  { field: 'usedSpace', headerName: 'Espacio utilizado', width: 100 },
 ]
 
 const Storages = () => {
