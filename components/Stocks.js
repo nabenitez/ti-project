@@ -17,7 +17,7 @@ const Stocks = () => {
   const [data, setData] = React.useState(null)
   const [click, setClick] = React.useState(false)
   React.useEffect(() => {
-    if (click) {
+    if (click || fetching) {
       getStocks().then((res) => {
         setData(res.map((elem) => ({ id: elem._id, ...elem })))
         setFetching(false)
