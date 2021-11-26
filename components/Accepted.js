@@ -1,6 +1,6 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
-import { getStocks } from '../lib/api'
+import { getStats } from '../lib/api'
 import Box from '@mui/material/Box'
 import { Typography } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -8,18 +8,19 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import IconButton from '@mui/material/IconButton'
 
 const columns = [
-  { field: 'id', headerName: '_id', width: 200 },
-  { field: 'total', headerName: 'Total', width: 200 },
+  { field: 'id', headerName: '_id', width: 300 },
+  { field: 'total', headerName: 'client', width: 300 },
 ]
 
-const Stocks = () => {
+const Accepted = () => {
   const [fetching, setFetching] = React.useState(true)
   const [data, setData] = React.useState(null)
   const [click, setClick] = React.useState(false)
   React.useEffect(() => {
     if (click || fetching) {
-      getStocks().then((res) => {
-        setData(res.map((elem) => ({ id: elem._id, ...elem })))
+      getStats().then((res) => {
+        console.log(res);
+        setData(res.accepted.map((elem) => ({ id: elem.orderId, total: elem.cliente })))
         setFetching(false)
         setClick(false)
       })
@@ -40,7 +41,7 @@ const Stocks = () => {
           id="tableTitle"
           component="div"
         >
-          Stocks
+          Accepted
         </Typography>
         <IconButton aria-label="delete" onClick={handleClick}>
           <RefreshIcon />
@@ -63,4 +64,4 @@ const Stocks = () => {
   )
 }
 
-export default Stocks
+export default Accepted

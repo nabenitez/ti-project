@@ -12,7 +12,7 @@ const columns = [
   { field: 'total', headerName: 'Total', width: 200 },
 ]
 
-const Stocks = () => {
+const Pending = () => {
   const [fetching, setFetching] = React.useState(true)
   const [data, setData] = React.useState(null)
   const [click, setClick] = React.useState(false)
@@ -40,7 +40,7 @@ const Stocks = () => {
           id="tableTitle"
           component="div"
         >
-          Stocks
+          Pending
         </Typography>
         <IconButton aria-label="delete" onClick={handleClick}>
           <RefreshIcon />
@@ -63,4 +63,4 @@ const Stocks = () => {
   )
 }
 
-export default Stocks
+export default Pending

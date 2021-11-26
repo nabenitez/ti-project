@@ -9,13 +9,12 @@ import IconButton from '@mui/material/IconButton'
 
 const columns = [
   { field: 'id', headerName: '_id', width: 250 },
-  { field: 'totalSpace', headerName: 'Espacio total', width: 200 },
-  { field: 'usedSpace', headerName: 'Espacio utilizado', width: 200 },
   { field: 'grupo', headerName: 'Grupo', width: 100 },
-  { field: 'recepcion', headerName: 'Recepción', width: 100 },
   { field: 'cocina', headerName: 'Cocina', width: 100 },
-  { field: 'despacho', headerName: 'Despacho', width: 100 },
   { field: 'pulmon', headerName: 'Pulmon', width: 100 },
+  { field: 'despacho', headerName: 'Despacho', width: 100 },
+  { field: 'totalSpace', headerName: 'Espacio total', width: 100 },
+  { field: 'usedSpace', headerName: 'Espacio utilizado', width: 100 },
 ]
 
 const Storages = () => {
@@ -26,6 +25,7 @@ const Storages = () => {
   React.useEffect(() => {
     if (click || fetching) {
       getStorages().then((res) => {
+        console.log(res);
         setData(res.map((elem) => ({ id: elem._id, ...elem })))
         setFetching(false)
         setClick(false)
