@@ -8,7 +8,7 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import IconButton from '@mui/material/IconButton'
 
 const columns = [
-  { field: 'id', headerName: '_id', width: 200 },
+  { field: 'id', headerName: 'sku', width: 200 },
   { field: 'total', headerName: 'Total', width: 200 },
 ]
 
@@ -19,7 +19,7 @@ const Stocks = () => {
   React.useEffect(() => {
     if (click || fetching) {
       getStocks().then((res) => {
-        setData(res.map((elem) => ({ id: elem._id, ...elem })))
+        setData(res.map((elem) => ({ id: elem.sku, ...elem })))
         setFetching(false)
         setClick(false)
       })
