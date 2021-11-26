@@ -19,8 +19,13 @@ const Accepted = () => {
   React.useEffect(() => {
     if (click || fetching) {
       getStats().then((res) => {
-        console.log(res);
-        setData(res.accepted.map((elem) => ({ id: elem.orderId, total: elem.cliente })))
+        console.log(res)
+        setData(
+          res.accepted.map((elem) => ({
+            id: elem.orderId,
+            total: elem.cliente,
+          }))
+        )
         setFetching(false)
         setClick(false)
       })
@@ -41,7 +46,7 @@ const Accepted = () => {
           id="tableTitle"
           component="div"
         >
-          Accepted
+          Accepted orders
         </Typography>
         <IconButton aria-label="delete" onClick={handleClick}>
           <RefreshIcon />

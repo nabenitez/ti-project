@@ -19,7 +19,12 @@ const Finished = () => {
   React.useEffect(() => {
     if (click || fetching) {
       getStats().then((res) => {
-        setData(res.finished.map((elem) => ({ id: elem.orderId, total: elem.cliente })))
+        setData(
+          res.finished.map((elem) => ({
+            id: elem.orderId,
+            total: elem.cliente,
+          }))
+        )
         setFetching(false)
         setClick(false)
       })
@@ -40,7 +45,7 @@ const Finished = () => {
           id="tableTitle"
           component="div"
         >
-          Finished
+          Finished orders
         </Typography>
         <IconButton aria-label="delete" onClick={handleClick}>
           <RefreshIcon />
