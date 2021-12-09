@@ -13,7 +13,7 @@ const columns = [
   { field: 'total', headerName: 'client', width: 300 },
 ]
 
-const Accepted = () => {
+const Rejected = () => {
   const [fetching, setFetching] = React.useState(true)
   const [dataB2b, setDataB2b] = React.useState(null)
   const [dataSftp, setDataSftp] = React.useState(null)
@@ -23,13 +23,13 @@ const Accepted = () => {
       getStats().then((res) => {
         console.log(res)
         setDataB2b(
-          res.acceptedB2b.map((elem) => ({
+          res.rejectedB2b.map((elem) => ({
             id: elem.orderId,
             total: elem.cliente,
           }))
         )
         setDataSftp(
-          res.acceptedSftp.map((elem) => ({
+          res.rejectedSftp.map((elem) => ({
             id: elem.orderId,
             total: elem.cliente,
           }))
@@ -56,7 +56,7 @@ const Accepted = () => {
               id="tableTitle"
               component="div"
             >
-              Accepted B2b
+              Rejected B2b
             </Typography>
             <IconButton aria-label="delete" onClick={handleClick}>
               <RefreshIcon />
@@ -86,7 +86,7 @@ const Accepted = () => {
               id="tableTitle"
               component="div"
             >
-              Accepted Sftp
+              Rejected Sftp
             </Typography>
             <IconButton aria-label="delete" onClick={handleClick}>
               <RefreshIcon />
@@ -111,4 +111,4 @@ const Accepted = () => {
   )
 }
 
-export default Accepted
+export default Rejected

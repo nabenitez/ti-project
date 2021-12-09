@@ -2,6 +2,7 @@ import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { getStats } from '../lib/api'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import { Typography } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import RefreshIcon from '@mui/icons-material/Refresh'
@@ -14,13 +15,20 @@ const columns = [
 
 const Finished = () => {
   const [fetching, setFetching] = React.useState(true)
-  const [data, setData] = React.useState(null)
+  const [dataB2b, setDataB2b] = React.useState(null)
+  const [dataSftp, setDataSftp] = React.useState(null)
   const [click, setClick] = React.useState(false)
   React.useEffect(() => {
     if (click || fetching) {
       getStats().then((res) => {
-        setData(
-          res.finished.map((elem) => ({
+        setDataB2b(
+          res.finishedB2b.map((elem) => ({
+            id: elem.orderId,
+            total: elem.cliente,
+          }))
+        )
+        setDataSftp(
+          res.finishedSftp.map((elem) => ({
             id: elem.orderId,
             total: elem.cliente,
           }))
@@ -37,34 +45,68 @@ const Finished = () => {
   }
 
   return (
-    <Box sx={{ height: 400, mt: 4 }}>
-      <Box sx={{ display: 'flex' }}>
-        <Typography
-          sx={{ flexGrow: 1 }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Finished orders
-        </Typography>
-        <IconButton aria-label="delete" onClick={handleClick}>
-          <RefreshIcon />
-        </IconButton>
-      </Box>
+    <Grid container spacing={4}>
+      <Grid item xs={12} md={6}>
+        <Box sx={{ height: 400, mt: 4 }}>
+          <Box sx={{ display: 'flex' }}>
+            <Typography
+              sx={{ flexGrow: 1 }}
+              variant="h6"
+              id="tableTitle"
+              component="div"
+            >
+              Finished B2b
+            </Typography>
+            <IconButton aria-label="delete" onClick={handleClick}>
+              <RefreshIcon />
+            </IconButton>
+          </Box>
 
-      {!fetching ? (
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={6}
-          rowsPerPageOptions={[6]}
-        />
-      ) : (
-        <Box sx={{ display: 'flex', height: 400, width: '100%' }}>
-          <CircularProgress sx={{ m: 'auto' }} />
+          {!fetching ? (
+            <DataGrid
+              rows={dataB2b}
+              columns={columns}
+              pageSize={6}
+              rowsPerPageOptions={[6]}
+            />
+          ) : (
+            <Box sx={{ display: 'flex', height: 400, width: '100%' }}>
+              <CircularProgress sx={{ m: 'auto' }} />
+            </Box>
+          )}
         </Box>
-      )}
-    </Box>
+      </Grid>
+      <Grid item xs={12} md={6} spacing={2}>
+        <Box sx={{ height: 400, mt: 4 }}>
+          <Box sx={{ display: 'flex' }}>
+            <Typography
+              sx={{ flexGrow: 1 }}
+              variant="h6"
+              id="tableTitle"
+              component="div"
+            >
+              Finished Sftp
+            </Typography>
+            <IconButton aria-label="delete" onClick={handleClick}>
+              <RefreshIcon />
+            </IconButton>
+          </Box>
+
+          {!fetching ? (
+            <DataGrid
+              rows={dataSftp}
+              columns={columns}
+              pageSize={6}
+              rowsPerPageOptions={[6]}
+            />
+          ) : (
+            <Box sx={{ display: 'flex', height: 400, width: '100%' }}>
+              <CircularProgress sx={{ m: 'auto' }} />
+            </Box>
+          )}
+        </Box>
+      </Grid>
+    </Grid>
   )
 }
 
